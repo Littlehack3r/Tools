@@ -15,7 +15,7 @@ import random
 x = "./home"
 f = open( x, "r")
 
-new_data = "" #stores data to be copied back into file
+new_data = "" 
 
 def reverse(info):
 
@@ -34,12 +34,27 @@ def reverse(info):
             continue
         
         line = [line[::-1] for lines in line]      #reverses strings
+        new_data += line 
 
 #reverse random lines
 def randReverse(f):
     lines = open(f).read().splitlines()
+    
+    for line in f.readlines():
+       
+        if len(line) == 0:
+        new_data += "\n"
+        continue
+
+        #store comments
+        if line.startswith("#"):
+            new_data += line
+            continue
+
+
     myline =random.choice(lines)
     myline = [myline[::-1] for lines in line]  
+    new_data += myline 
     print(myline)
 
 #reverse /etc/hosts
