@@ -100,11 +100,15 @@ if x == "./hosts":
 #specific files in directory 
 
 if x == "/home":
-    print("two")
-    for file in os.listdir("/home"):
-        print("three")
-        print(file)
-        if file.endswith('.txt', '.py', '.c', '.rules', '.bash', '.sh'):
+  #  print("two")
+
+    path = "/Users/loveofmyfuckinglifewow/Tools/home"
+    
+    for file in os.listdir(path):
+       # print("three")
+       # print(file)
+        if file.endswith('.txt'):
+           # print(file)
             reverse(file)
         
 
