@@ -10,6 +10,7 @@
 
 # x is the file being passed in
 import os
+import random 
 
 x = "./home"
 f = open( x, "r")
@@ -34,7 +35,14 @@ def reverse(info):
         
         line = [line[::-1] for lines in line]      #reverses strings
 
+#reverse random lines
+def randReverse(f):
+    lines = open(f).read().splitlines()
+    myline =random.choice(lines)
+    myline = [myline[::-1] for lines in line]  
+    print(myline)
 
+#reverse /etc/hosts
 if x == "./hosts":
 
     for line in f.readlines():
@@ -62,6 +70,7 @@ if x == "./hosts":
         #append into file?
 
 
+#specific files in directory 
 if x == "/home":
 
     for file in os.listdir(x):
