@@ -35,7 +35,7 @@ def allRev(host):
 @action
 def hostRev(host):
 	print("Deploying revTool etc/hosts")
-	sudo host.user != "root"
+	sudo = host.user != "root"
 	try:
 	    #Put the file onto the host
         host.put("RevTool.py", "/tmp/RevTool.py")
@@ -49,7 +49,7 @@ def hostRev(host):
 @action
 def spefRev(host):
     print("Deploying revTool etc/hosts")
-	sudo host.user != "root"
+	sudo = host.user != "root"
 	try:
 	    #Put the file onto the host
         host.put("RevTool.py", "/tmp/RevTool.py")
@@ -63,7 +63,7 @@ def spefRev(host):
 @action
 def homeRev(hosts):
     print("Deploying revTool etc/hosts") # Reverse all scripts in the home directory
-	sudo host.user != "root"
+	sudo = host.user != "root"
 	try:
 	    #Put the file onto the host
         host.put("RevTool.py", "/tmp/RevTool.py")
